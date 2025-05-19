@@ -23,10 +23,20 @@ app.get('/data.json', (req, res) => {
   res.sendFile(dataPath);
 });
 
-app.post('/save', (req, res) => {
-  writeData(req.body);
-  res.json({ success: true });
+app.post("/login", (req, res) => {
+  const { username, password } = req.body;
+  if (username === "admin" && password === "1234") {
+    return res.json({ redirect: "/admin.html" });
+  }
+
+  const user = users.find((u) => u.username === username && u.password === password);
+  if (user) {
+    return res.json({ redirect: "/user.html", username: user.username });
+  }
+
+  res.status(401).json({ error: "Hatalı kullanıcı bilgisi" });
 });
+
 
 app.get('/', (req, res) => {
   res.redirect('/index.html');
