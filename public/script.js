@@ -15,20 +15,28 @@ function handleLogin() {
   const u = document.getElementById("username").value.trim();
   const p = document.getElementById("password").value.trim();
 
-  if (u === "admin" && p === "1234") {
-    document.getElementById("loginPage").classList.add("hidden");
-    document.querySelector(".container").classList.remove("hidden");
-    load();
-    return;
-  }
-
-  const user = users.find(x => x.username === u && x.password === p);
-  if (!user) return alert("Hatalı giriş");
-
-  currentUser = user;
-  window.location.href = "user.html";
-  localStorage.setItem("sessionUser", user.username);
+  fetch("/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ username: u, password: p }),
+  })
+    .then((res) => {
+      if (res.redirected) {
+        window.location.href = res.url;
+      } else {
+        return res.json();
+      }
+    })
+    .then((data) => {
+      if (data && data.error) {
+        alert(data.error);
+      }
+    })
+    .catch((err) => {
+      console.error("Giriş hatası:", err);
+    });
 }
+
 
 function logout() {
   localStorage.removeItem("sessionUser");
