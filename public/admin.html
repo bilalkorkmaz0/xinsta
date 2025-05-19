@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Paneli</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Admin Paneli</h2>
+    <button onclick="logout()">Çıkış</button>
+
+    <h3>Yeni Kullanıcı Oluştur</h3>
+    <input id="newUsername" placeholder="Kullanıcı adı">
+    <input id="newPassword" placeholder="Şifre">
+    <input id="newBio" placeholder="Biyografi">
+    <button onclick="createUser()">Oluştur</button>
+
+    <h3>Kullanıcılar</h3>
+    <ul id="userList"></ul>
+
+    <h3>Gönderi Ekle</h3>
+    <input type="file" id="uploadInput">
+    <button onclick="submitPost()">Gönderi Ekle</button>
+    <div id="uploadProgress"></div>
+
+    <h3>Seçilen Kullanıcının Gönderileri</h3>
+    <div id="userGrid" class="grid"></div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

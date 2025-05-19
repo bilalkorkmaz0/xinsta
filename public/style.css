@@ -1,0 +1,51 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 40px;
+  background: #f1f1f1;
+}
+.login-container, .container {
+  max-width: 400px;
+  margin: auto;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+input {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 16px;
+}
+button {
+  background: #333;
+  color: white;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+button:hover {
+  background: #000;
+}
+.hidden {
+  display: none;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.grid img {
+  width: 100%;
+  aspect-ratio: 1 / 1.25;
+  object-fit: cover;
+  border-radius: 6px;
+}
+.hint {
+  font-size: 12px;
+  color: gray;
+}
