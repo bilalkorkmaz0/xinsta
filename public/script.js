@@ -20,15 +20,11 @@ function handleLogin() {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username: u, password: p }),
   })
-    .then((res) => {
-      if (res.redirected) {
-        window.location.href = res.url;
-      } else {
-        return res.json();
-      }
-    })
+    .then((res) => res.json())
     .then((data) => {
-      if (data && data.error) {
+      if (data.redirect) {
+        window.location.href = data.redirect;
+      } else if (data.error) {
         alert(data.error);
       }
     })
@@ -36,6 +32,7 @@ function handleLogin() {
       console.error("Giriş hatası:", err);
     });
 }
+
 
 
 function logout() {
